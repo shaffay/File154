@@ -8,8 +8,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       
-    <Home />
-    {/* <Profile /> */}
+    {/* <Home /> */}
+    <Profile />
 
     </View>
   );
