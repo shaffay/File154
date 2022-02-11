@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { StyleSheet, Text, View,Image,FlatList } from 'react-native';
 import {Card , FAB ,Title} from 'react-native-paper';
 

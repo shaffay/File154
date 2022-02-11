@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,Image } from 'react-native';
-import { Card,Title } from 'react-native-paper';
+import { Card,Title,Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons,Ionicons  } from '@expo/vector-icons'; 
 
@@ -52,6 +52,29 @@ export default function Profile() {
               </Text>
             </View>
           </Card>
+          <Card style={styles.cards}  onPress={()=>{ console.log('PressedSalary') }} >
+            <View style={styles.cardview}>
+            <MaterialIcons name="attach-money" size={28} color="#8c8570" />              
+              <Text style={styles.cardtext} > Salary: </Text>
+              <Text style={{fontSize:20,fontWeight:"400"}} 
+              > 
+               120k
+              </Text>
+            </View>
+          </Card>
+
+
+            <View style={styles.buttonpanel} >
+              
+                  <Button style={styles.btn} icon="camera" theme={theme} mode="contained" onPress={() => console.log('Pressed')}>
+                    Edit Employee
+                  </Button>
+                  <Button style={styles.btn} icon="camera" theme={theme} mode="contained" onPress={() => console.log('Pressed')}>
+                    Fire Employee
+                  </Button>
+
+
+            </View>
 
 
       </View>
@@ -64,6 +87,14 @@ export default function Profile() {
   );
 }
 
+const theme = {
+
+  colors:{
+    primary: '#211c0e',
+    accent: '#877029',
+  }
+
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -108,5 +139,19 @@ const styles = StyleSheet.create({
     //marginTop:2,
     fontWeight:'bold',
     fontSize:20
+  },
+  buttonpanel:{
+
+    marginTop:35,
+    flexDirection:"row",
+    justifyContent:"space-evenly"
+
+
+  },
+  btn:{
+    margin:8,
+    borderRadius:10,
+    
+
   }
 });
