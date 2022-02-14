@@ -85,12 +85,24 @@ export default function CreateEmployee() {
 
     <View style={styles.modalview}>
 
-          <Button style={styles.mbtn} theme={theme} icon="upload" mode="contained" onPress={() => console.log('Image')}>
+      <View style={{  flexDirection:"row",justifyContent:"space-evenly"}}>
+
+          <Button style={styles.mbtn} theme={theme} icon="camera-plus" mode="contained" onPress={() => console.log('Image')}>
           Camera
           </Button>
-          <Button style={styles.mbtn} theme={theme} icon="content-save-settings-outline" mode="contained" onPress={() => console.log('Image')}>
+          <Button style={styles.mbtn} theme={theme} icon="image-multiple" mode="contained" onPress={() => console.log('Image')}>
           Gallery
           </Button>
+
+      </View>
+
+        <View style={{alignItems:"center"}}>
+          <Button style={styles.cbtn} theme={{ colors:{primary:'#877029'} }} icon="backburger" mode="contained" onPress={() => setModal(false)}>
+         Go Back
+          </Button>
+
+      </View>
+          
 
     </View>
 
@@ -105,8 +117,8 @@ export default function CreateEmployee() {
 const theme = {
 
   colors:{
-    primary: '#4287f5',
-    accent: '#4245f5',
+    primary: '#211c0e',
+    accent: '#877029',
   }
 
 }
@@ -130,16 +142,22 @@ const styles = StyleSheet.create({
     marginTop:20,
   },
   modalview:{
-    flexDirection:"row",
+   
     position: "absolute",
-    bottom: 40,
+    bottom: -30,
     width: "100%",
+    height: "19%",
     backgroundColor: "white",
-    justifyContent:"space-evenly"
-
+    
   },
   mbtn:{
     margin:10,
-    padding: 10,
+    padding: 3,
+  },
+  cbtn:{
+    margin:10,
+    width:320,
+    justifyContent:"center",
   }
+
 });
