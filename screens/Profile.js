@@ -4,7 +4,16 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons,Ionicons  } from '@expo/vector-icons'; 
 
 
-export default function Profile() {
+export default function Profile( props ) {
+  const {
+    id,
+    name,
+    picture,
+    salary,
+    email,
+    phone,
+    position,
+  } = props.route.params.item;
   return (
     <View style={styles.container}>
        <LinearGradient
@@ -16,14 +25,14 @@ export default function Profile() {
 
       <Image 
       style={styles.img}
-      source={{uri:"https://images.unsplash.com/photo-1513064840867-06fb871b30e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"}}
+      source={{uri:picture}}
       />
       </View>
 
 <View style={styles.title}>
 
-<Title style={{fontSize:22}}>Shaffay Bajwa</Title>
-<Text style={{fontSize:14,fontWeight:'bold'}}>ReactNative Dev</Text>
+<Title style={{fontSize:22}}>{name}</Title>
+<Text style={{fontSize:14,fontWeight:'bold'}}>{position}</Text>
 
 </View>
 
@@ -38,7 +47,7 @@ export default function Profile() {
               <Text style={styles.cardtext} > Email: </Text>
               <Text style={{fontSize:20,fontWeight:"400"}} 
               > 
-              shaffaybajwa@gmail.com
+              {email}
               </Text>
             </View>
           </Card>
@@ -48,7 +57,7 @@ export default function Profile() {
               <Text style={styles.cardtext} > Phone: </Text>
               <Text style={{fontSize:20,fontWeight:"400"}} 
               > 
-               0312-8780074
+               {phone}
               </Text>
             </View>
           </Card>
@@ -58,7 +67,7 @@ export default function Profile() {
               <Text style={styles.cardtext} > Salary: </Text>
               <Text style={{fontSize:20,fontWeight:"400"}} 
               > 
-               120k
+              {salary}
               </Text>
             </View>
           </Card>
