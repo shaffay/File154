@@ -14,6 +14,7 @@ export default function Profile( props ) {
     phone,
     position,
   } = props.route.params.item;
+  
   return (
     <View style={styles.container}>
        <LinearGradient

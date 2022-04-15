@@ -6,7 +6,7 @@ import * as Permissions from "expo-permissions";
 
 export default function CreateEmployee() {
   
-  const [Name, setName] = useState("Shaffay");
+  const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Phone, setPhone] = useState("");
   const [Position, setPosition] = useState("");

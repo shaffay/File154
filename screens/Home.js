@@ -1,25 +1,31 @@
-import * as React from 'react';
+import React, { useEffect,useState } from "react";  
 import { StyleSheet, Text, View,Image,FlatList } from 'react-native';
 import {Card , FAB ,Title} from 'react-native-paper';
 
 
 export default function Home( props ) {
 
-  const data = [
-    {
-    id:'1',
-    name:'Shaffay Bajwa',
-    position:'Faculty',
-    salary:'2-lac',
-    picture:'https://images.unsplash.com/photo-1637722876963-4c68ebce6d87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    email:'shaffaybajwa@gmail.com',
-    phone:'03128780074'},
+  const [data , setdata] = useState([]) 
+  const [loading , setloading] = useState(true) 
 
-    {id:'2',name:'Mohammad Usman',position:'Frontend-Dev',salary:'30k',picture:'https://images.unsplash.com/photo-1642893746687-3a2c172d8f71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',email:'shaffaybajwa@gmail.com',phone:'03128780074'},
-    {id:'3',name:'Huzifa Rizwan',position:'Shopify-Expert',salary:'2k',picture:'https://images.unsplash.com/photo-1642977131886-08ef4325d080?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',email:'shaffaybajwa@gmail.com',phone:'03128780074'},
-    {id:'4',name:'Muaaz Kazabti',position:'Freelancer',salary:'0k',picture:'https://images.unsplash.com/photo-1638225307009-07f55cbb1991?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',email:'shaffaybajwa@gmail.com',phone:'03128780074'},
 
-  ]
+  const fetchData = () =>{
+
+    fetch("https://fn154.herokuapp.com/")
+    .then((res)=>res.json())
+    .then((result)=>{
+      
+      setdata(result);
+      setloading(false);
+    })
+
+
+  }
+  useEffect(
+    () => {
+      fetchData();
+    }
+  )
 
   const renderList = (item) =>{
           return(
@@ -28,10 +34,10 @@ export default function Home( props ) {
 
             <View style={styles.cardview} >
 
-                <Image 
+                {/* <Image 
                 source={{uri:item.picture}}
                 style={styles.img}
-                />
+                /> */}
 
             <View style={styles.cardtext}>
 
@@ -57,6 +63,8 @@ export default function Home( props ) {
       renderItem={( {item} )=>{
         return renderList(item)
       }}
+      onRefresh={() => fetchData()}
+      refreshing={loading}
 
       />  
               <FAB
