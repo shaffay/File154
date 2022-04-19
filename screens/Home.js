@@ -34,10 +34,10 @@ export default function Home( props ) {
 
             <View style={styles.cardview} >
 
-                {/* <Image 
+                <Image 
                 source={{uri:item.picture}}
                 style={styles.img}
-                /> */}
+                />
 
             <View style={styles.cardtext}>
 

@@ -4,15 +4,51 @@ import {Card , TextInput,Button  } from 'react-native-paper';
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 
-export default function CreateEmployee() {
+export default function CreateEmployee({ navigation }) {
   
-  const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Phone, setPhone] = useState("");
-  const [Position, setPosition] = useState("");
-  const [Salary, setSalary] = useState("");
-  const [Picture, setPicture] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [salary, setSalary] = useState("");
+  const [picture, setPicture] = useState("");
+  const [position, setPosition] = useState("");
   const [VModal, setModal] = useState(false);
+
+  const submitData = () =>{
+
+    fetch("https://fn154.herokuapp.com/create",{
+      method:"post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+         name,
+         email,
+         phone,
+         picture,
+         salary,
+         position,
+        
+      })
+
+    })
+    .then((res) => res.json())
+
+    .then((data) => {
+      Alert.alert(`Employee Added Successfuly`);
+      navigation.navigate("Home");
+    })
+
+
+    .catch((err) => {
+      Alert.alert(`Employee Added Successfuly`);
+      navigation.navigate("Home");
+    });
+
+
+
+  }
+
 
   const pickFromCamera = async() =>{
 
@@ -130,7 +166,7 @@ export default function CreateEmployee() {
    <TextInput
       label="Name"
       style={styles.inputs}
-      value={Name}
+      value={name}
       theme={theme}
       mode="outlined"
       onChangeText={text => setName(text)}
@@ -138,7 +174,7 @@ export default function CreateEmployee() {
    <TextInput
       label="Email"
       style={styles.inputs}
-      value={Email}
+      value={email}
       theme={theme}
       mode="outlined"
       onChangeText={text => setEmail(text)}
@@ -146,7 +182,7 @@ export default function CreateEmployee() {
    <TextInput
       label="Position"
       style={styles.inputs}
-      value={Position}
+      value={position}
       theme={theme}
       mode="outlined"
       onChangeText={text => setPosition(text)}
@@ -154,7 +190,7 @@ export default function CreateEmployee() {
    <TextInput
       label="Phone"
       style={styles.inputs}
-      value={Phone}
+      value={phone}
       theme={theme}
       mode="outlined"
       onChangeText={text => setPhone(text)}
@@ -162,7 +198,7 @@ export default function CreateEmployee() {
    <TextInput
       label="Salary"
       style={styles.inputs}
-      value={Salary}
+      value={salary}
       theme={theme}
       mode="outlined"
       onChangeText={text => setSalary(text)}
@@ -173,7 +209,7 @@ export default function CreateEmployee() {
   onPress={() => setModal(true)}>
     Upload Image
   </Button>
-  <Button style={styles.btn} theme={theme} icon="content-save-settings-outline" mode="contained" onPress={() => console.log('Image')}>
+  <Button style={styles.btn} theme={theme} icon="content-save-settings-outline" mode="contained" onPress={() => submitData() }>
     Submit
   </Button>
 
